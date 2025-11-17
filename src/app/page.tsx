@@ -1,68 +1,103 @@
+"use client";
 import Image from "next/image";
-import styles from "./page.module.css";
-import AIQueryBox from "@/components/qa/AIQueryBox";
 
+export default function HomePage() {
+  const sites = [
+    {
+      name: "Google Scholar",
+      logo: "/logos/google.png",
+      link: "https://scholar.google.com",
+      color: "linear-gradient(135deg, #00eaff55, #0077ff33)",
+    },
+    {
+      name: "arXiv",
+      logo: "/logos/arxiv.png",
+      link: "https://arxiv.org",
+      color: "linear-gradient(135deg, #a855f755, #6b21a833)",
+    },
+    {
+      name: "Semantic Scholar",
+      logo: "/logos/semantic.png",
+      link: "https://www.semanticscholar.org",
+      color: "linear-gradient(135deg, #38bdf855, #2563eb33)",
+    },
+    {
+      name: "PubMed",
+      logo: "/logos/pubmed.png",
+      link: "https://pubmed.ncbi.nlm.nih.gov",
+      color: "linear-gradient(135deg, #2dd4bf55, #0d948833)",
+    },
+    {
+      name: "IEEE Xplore",
+      logo: "/logos/ieee.png",
+      link: "https://ieeexplore.ieee.org",
+      color: "linear-gradient(135deg, #6366f155, #4f46e533)",
+    }
+  ];
 
-export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
+    <div
+      className="w3-animate-opacity"
+      style={{
+        padding: "30px 10px",
+        display: "grid",
+        justifyContent: "center",
+      }}
+    >
+      <h1
+        style={{
+          fontSize: "2rem",
+          marginBottom: "30px",
+        }}
+      >
+        Research Sources
+      </h1>
+
+      <div
+        style={{
+          display: "grid",
+          gap: "28px",
+          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+          maxWidth: "900px",
+          width: "100%",
+        }}
+      >
+        {sites.map((s) => (
           <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+            key={s.name}
+            href={s.link}
             target="_blank"
-            rel="noopener noreferrer"
+            className="arpis-site-card"
+            style={{
+              padding: "30px 24px",
+              borderRadius: "18px",
+              background: s.color,
+              border: "1px solid var(--arp-border-subtle)",
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: "20px",
+              transition: "0.25s",
+            }}
           >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+            <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+              <Image
+                src={s.logo}
+                alt={s.name}
+                width={42}
+                height={42}
+                style={{ borderRadius: "8px" }}
+              />
+              <span style={{ fontSize: "1.25rem", fontWeight: 600 }}>
+                {s.name}
+              </span>
+            </div>
+
+            <span style={{ fontSize: "1.8rem", opacity: 0.7 }}>→</span>
           </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+        ))}
+      </div>
     </div>
   );
 }

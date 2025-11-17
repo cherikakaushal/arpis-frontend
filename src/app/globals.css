@@ -78,3 +78,9 @@ body {
   color: var(--arpis-text);
   transition: background 0.3s ease, color 0.3s ease;
 }
+
+.arpis-site-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px var(--arp-accent);
+  border-color: var(--arp-accent);
+}
