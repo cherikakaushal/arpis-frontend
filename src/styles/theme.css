@@ -1,0 +1,713 @@
+/* src/styles/theme.css */
+
+/* Shell layout */
+
+.arpis-shell {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #161622 0, #050507 60%);
+}
+
+/* Sidebar */
+
+.arpis-sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  padding: 24px 20px;
+  background: linear-gradient(
+    160deg,
+    rgba(9, 9, 16, 0.98) 0%,
+    rgba(9, 9, 20, 0.98) 60%,
+    rgba(16, 8, 32, 0.98) 100%
+  );
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+}
+
+.arpis-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.arpis-logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 20%, #ffffff, #29f4ff 40%, #050507 80%);
+  box-shadow: 0 0 20px rgba(41, 244, 255, 0.8);
+}
+
+.arpis-logo-text-main {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.arpis-logo-text-sub {
+  font-size: 0.7rem;
+  color: var(--arpis-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.arpis-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.arpis-nav-section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--arpis-text-muted);
+  margin-bottom: 6px;
+}
+
+.arpis-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 11px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  color: #e7e8ff;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.arpis-nav-link:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.05);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.arpis-nav-link-active {
+  background: radial-gradient(circle at 0 0, #29f4ff33, #050507 75%);
+  border-color: rgba(41, 244, 255, 0.6);
+  box-shadow: 0 0 16px rgba(41, 244, 255, 0.55);
+}
+
+.arpis-nav-icon {
+  font-size: 1.1rem;
+}
+
+/* Main content area */
+
+.arpis-main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.arpis-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 28px;
+  backdrop-filter: blur(20px);
+  background: linear-gradient(
+    90deg,
+    rgba(5, 5, 7, 0.8),
+    rgba(7, 7, 10, 0.7),
+    rgba(7, 5, 16, 0.8)
+  );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.arpis-navbar-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--arpis-text-muted);
+}
+
+.arpis-navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.arpis-chip {
+  font-size: 0.75rem;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(41, 244, 255, 0.5);
+  background: radial-gradient(circle at 0 0, #29f4ff22, transparent 70%);
+}
+
+/* Page content wrapper */
+
+.arpis-page {
+  padding: 28px 28px 32px;
+}
+
+/* Glass card utility */
+
+.arpis-glass-card {
+  border-radius: var(--arpis-radius-xl);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid var(--arpis-border);
+  backdrop-filter: blur(var(--arpis-blur));
+  box-shadow: var(--arpis-shadow-soft);
+}
+
+/* Responsive tweak */
+
+@media (max-width: 900px) {
+  .arpis-shell {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  .arpis-logo-text-main,
+  .arpis-logo-text-sub,
+  .arpis-nav-section-label,
+  .arpis-nav-label-text {
+    display: none;
+  }
+
+  .arpis-nav-link {
+    justify-content: center;
+    padding-inline: 0;
+  }
+}
+
+/* Upload page box */
+.arpis-upload-box {
+  border: 2px dashed rgba(255, 255, 255, 0.12);
+  padding: 60px 32px;
+  border-radius: var(--arpis-radius-xl);
+  text-align: center;
+  cursor: pointer;
+  transition: 0.25s ease;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(15px);
+}
+
+/* ORB LOADER */
+.arpis-orb-loader {
+  width: 120px;
+  height: 120px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 20%, #29f4ff, #0a0a14 70%);
+  box-shadow:
+    0 0 40px rgba(41, 244, 255, 0.6),
+    0 0 80px rgba(41, 244, 255, 0.2) inset;
+  animation: arpisPulse 1.8s infinite ease-in-out,
+    arpisRotate 6s linear infinite;
+  filter: blur(0.3px);
+}
+
+@keyframes arpisPulse {
+  0% {
+    transform: scale(0.96);
+    box-shadow:
+      0 0 30px rgba(41, 244, 255, 0.4),
+      0 0 60px rgba(41, 244, 255, 0.15) inset;
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow:
+      0 0 60px rgba(41, 244, 255, 0.8),
+      0 0 110px rgba(41, 244, 255, 0.3) inset;
+  }
+  100% {
+    transform: scale(0.96);
+    box-shadow:
+      0 0 30px rgba(41, 244, 255, 0.4),
+      0 0 60px rgba(41, 244, 255, 0.15) inset;
+  }
+}
+
+@keyframes arpisRotate {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* -------------------------------------------------------
+   ARPIS FLOATING PARTICLE BACKGROUND (QUANTUM DUST)
+------------------------------------------------------- */
+
+#arpis-particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.arpis-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #29f4ff, transparent);
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: arpisParticleFloat linear infinite;
+  filter: drop-shadow(0 0 6px #29f4ff);
+}
+
+@keyframes arpisParticleFloat {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-180px) translateX(40px);
+    opacity: 0;
+  }
+}
+
+/* -------------------------------------------------------
+   ARPIS GLASS CARD — UPGRADED NEON EDITION
+------------------------------------------------------- */
+
+.arpis-glass-card {
+  border-radius: var(--arpis-radius-xl);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(22px);
+  box-shadow:
+    0 0 40px rgba(0, 0, 0, 0.45),
+    inset 0 0 25px rgba(255, 255, 255, 0.02);
+  position: relative;
+  overflow: hidden;
+  animation: arpisFadeIn 0.6s ease forwards;
+}
+
+/* Neon glow border effect */
+.arpis-glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, #29f4ff55, #a855ff55);
+          mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+/* Smooth fade-in animation */
+@keyframes arpisFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+/* -------------------------------------------------------
+   ARPIS SECTION HEADERS (Neon Label)
+------------------------------------------------------- */
+.arpis-section-title {
+  font-size: 1.4rem;
+  margin-bottom: 14px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  display: inline-block;
+  background: linear-gradient(to right, #29f4ff, #a855ff);
+ 
+  filter: drop-shadow(0 0 8px #29f4ff55);
+}
+
+.arpis-section-sub {
+  font-size: 0.9rem;
+  color: var(--arpis-text-muted);
+  margin-top: -8px;
+  margin-bottom: 16px;
+}
+
+/* -------------------------------------------------------
+   RESPONSIVE MODE (Mobile-first adjustments)
+------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .arpis-shell {
+    grid-template-columns: 70px 1fr;   /* Shrink sidebar */
+  }
+
+  .arpis-sidebar {
+    padding: 16px 10px;
+  }
+
+  .arpis-logo-text-main,
+  .arpis-logo-text-sub {
+    display: none;
+  }
+
+  .arpis-nav-label-text {
+    display: none;
+  }
+
+  /* Main page padding reduced */
+  .arpis-page {
+    padding: 20px;
+  }
+
+  /* Titles smaller */
+  h1 {
+    font-size: 1.4rem !important;
+  }
+
+  /* Cards tighter */
+  .arpis-glass-card {
+    padding: 16px !important;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 500px) {
+  .arpis-shell {
+    grid-template-columns: 0 1fr;  /* Hide sidebar completely */
+  }
+
+  .arpis-sidebar {
+    display: none !important;
+  }
+
+  .arpis-navbar {
+    padding: 14px 18px;
+  }
+
+  .arpis-page {
+    padding: 16px;
+  }
+}
+@keyframes arpis-breathe {
+  0% {
+    box-shadow:
+      0 0 18px rgba(0, 255, 255, 0.8),
+      0 0 32px rgba(0, 150, 255, 0.5),
+      inset 0 0 22px rgba(0, 255, 255, 0.5);
+  }
+  50% {
+    box-shadow:
+      0 0 26px rgba(0, 255, 255, 1),
+      0 0 44px rgba(0, 150, 255, 0.7),
+      inset 0 0 26px rgba(0, 255, 255, 0.65);
+  }
+  100% {
+    box-shadow:
+      0 0 18px rgba(0, 255, 255, 0.8),
+      0 0 32px rgba(0, 150, 255, 0.5),
+      inset 0 0 22px rgba(0, 255, 255, 0.5);
+  }
+}
+/* Breathing glow */
+@keyframes arpis-breathe {
+  0% {
+    box-shadow:
+      0 0 18px rgba(0, 255, 255, 0.8),
+      inset 0 0 20px rgba(0, 255, 255, 0.5);
+  }
+  50% {
+    box-shadow:
+      0 0 28px rgba(0, 255, 255, 1),
+      inset 0 0 28px rgba(0, 255, 255, 0.7);
+  }
+  100% {
+    box-shadow:
+      0 0 18px rgba(0, 255, 255, 0.8),
+      inset 0 0 20px rgba(0, 255, 255, 0.5);
+  }
+}
+
+/* Slow rotation */
+@keyframes arpis-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Center particle pulse */
+@keyframes arpis-pulse {
+  0% { opacity: 0.55; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.35); }
+  100% { opacity: 0.55; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* ============================================================
+   ARPIS — 2025 Scientific Theme System
+   Supports Dark + Light Modes
+   Applies to all pages (Upload, Results, History, etc.)
+   ============================================================ */
+
+/* -------- Base Reset -------- */
+:root {
+  --transition-fast: 0.15s ease;
+  --transition-mid: 0.28s ease;
+  --font-main: "Inter", sans-serif;
+
+  /* LIGHT THEME (default if user selects light mode) */
+  --arp-bg: #f5f7fb;
+  --arp-bg-alt: rgba(255, 255, 255, 0.7);
+
+  --arp-surface: rgba(255, 255, 255, 0.65);
+  --arp-border: rgba(0, 0, 0, 0.1);
+  --arp-border-subtle: rgba(0, 0, 0, 0.08);
+
+  --arp-text-main: #0a0a0f;
+  --arp-text-dim: #444;
+  --arp-text-muted: #666;
+
+  --arp-accent: #00eaff;
+  --arp-accent-soft: rgba(0, 234, 255, 0.15);
+}
+
+/* -------- DARK THEME OVERRIDE -------- */
+[data-theme="dark"] {
+  --arp-bg: #050507;
+  --arp-bg-alt: rgba(10, 10, 16, 0.7);
+
+  --arp-surface: rgba(255, 255, 255, 0.05);
+  --arp-border: rgba(255, 255, 255, 0.12);
+  --arp-border-subtle: rgba(255, 255, 255, 0.06);
+
+  --arp-text-main: #ffffff;
+  --arp-text-dim: #b7b7c7;
+  --arp-text-muted: #8a8a99;
+
+  --arp-accent: #00eaff;
+  --arp-accent-soft: rgba(0, 234, 255, 0.15);
+}
+
+/* -------- Global Layout -------- */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  background: var(--arp-bg);
+  color: var(--arp-text-main);
+  transition: background var(--transition-mid), color var(--transition-mid);
+}
+
+/* Smooth scroll everywhere */
+html {
+  scroll-behavior: smooth;
+}
+
+/* -------- Sidebar -------- */
+.arpis-sidebar {
+  backdrop-filter: blur(24px);
+}
+
+/* Sidebar nav links hover + active glow */
+.arpis-nav-link {
+  transition: background var(--transition-mid), color var(--transition-mid),
+    transform 0.15s ease;
+}
+
+.arpis-nav-link:hover {
+  background: var(--arp-accent-soft);
+  transform: translateX(4px);
+}
+
+/* -------- Glass Cards (Results Page, Upload Box, etc.) -------- */
+.arpis-card {
+  background: var(--arp-surface);
+  border: 1px solid var(--arp-border-subtle);
+  border-radius: 14px;
+  padding: 20px;
+  backdrop-filter: blur(14px);
+  transition: var(--transition-mid);
+}
+
+.arpis-card:hover {
+  border-color: var(--arp-border);
+}
+
+/* -------- Buttons -------- */
+.arpis-btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  color: black;
+  background: var(--arp-accent);
+  border: none;
+  transition: var(--transition-fast);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.arpis-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+/* -------- Input / File Box (Upload Page) -------- */
+.arpis-upload-box {
+  background: var(--arp-surface);
+  border: 1px dashed var(--arp-border);
+  padding: 40px;
+  border-radius: 18px;
+  backdrop-filter: blur(20px);
+  transition: var(--transition-mid);
+}
+
+.arpis-upload-box:hover {
+  border-color: var(--arp-accent);
+  background: var(--arp-accent-soft);
+}
+
+/* -------- Headings -------- */
+h1, h2, h3 {
+  color: var(--arp-text-main);
+  font-family: var(--font-main);
+}
+
+/* -------- Navbar -------- */
+.arpis-navbar {
+  height: 64px;
+  border-bottom: 1px solid var(--arp-border-subtle);
+  background: var(--arp-bg-alt);
+  backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 26px;
+}
+
+.arpis-navbar-title {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+}
+
+/* Chip for Mock AI Mode */
+.arpis-chip {
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--arp-border);
+  background: var(--arp-surface);
+  backdrop-filter: blur(20px);
+  font-size: 0.75rem;
+  opacity: 0.9;
+}
+
+/* -------- Animations (Orb) -------- */
+
+/* Breathing glow */
+@keyframes arpis-breathe {
+  0% {
+    box-shadow:
+      0 0 18px rgba(0, 255, 255, 0.8),
+      inset 0 0 20px rgba(0, 255, 255, 0.5);
+  }
+  50% {
+    box-shadow:
+      0 0 28px rgba(0, 255, 255, 1),
+      inset 0 0 28px rgba(0, 255, 255, 0.7);
+  }
+  100% {
+    box-shadow:
+      0 0 18px rgba(0, 255, 255, 0.8),
+      inset 0 0 20px rgba(0, 255, 255, 0.5);
+  }
+}
+
+/* Slow orb rotation */
+@keyframes arpis-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Center particle pulse */
+@keyframes arpis-pulse {
+  0%   { opacity: 0.55; transform: translate(-50%, -50%) scale(1); }
+  50%  { opacity: 0.9;  transform: translate(-50%, -50%) scale(1.35); }
+  100% { opacity: 0.55; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* ============================================================
+   ARPIS — Light Theme Fixes (Sidebar, Upload Box, Main Panel)
+   Paste at the BOTTOM of theme.css
+   ============================================================ */
+
+/* ---------------- LIGHT THEME OVERRIDES ---------------- */
+:root {
+  /* Sidebar (Light) */
+  --arp-sidebar-bg: linear-gradient(180deg, #ffffffee, #f2f5fadd);
+  --arp-sidebar-border: rgba(0, 0, 0, 0.08);
+  --arp-sidebar-shadow: 0 4px 32px rgba(0, 0, 0, 0.06);
+
+  /* Upload Box (Light) */
+  --arp-upload-bg: rgba(255, 255, 255, 0.65);
+  --arp-upload-border: rgba(0, 0, 0, 0.15);
+
+  /* Main Background Light */
+  --arp-main-bg: linear-gradient(180deg, #f8faff, #eef1f6);
+}
+
+/* ---------------- DARK THEME OVERRIDES ---------------- */
+[data-theme="dark"] {
+  /* Sidebar (Dark) */
+  --arp-sidebar-bg: linear-gradient(180deg, #0c0c10cc, #0a0a11dd);
+  --arp-sidebar-border: rgba(255, 255, 255, 0.07);
+  --arp-sidebar-shadow: none;
+
+  /* Upload Box (Dark) */
+  --arp-upload-bg: rgba(255, 255, 255, 0.04);
+  --arp-upload-border: rgba(255, 255, 255, 0.12);
+
+  /* Main Background Dark */
+  --arp-main-bg: linear-gradient(180deg, #050507, #0b0b12);
+}
+
+/* ---------------- COMPONENT UPDATES ---------------- */
+
+/* Sidebar Container */
+.arpis-sidebar {
+  background: var(--arp-sidebar-bg) !important;
+  border-right: 1px solid var(--arp-sidebar-border) !important;
+  box-shadow: var(--arp-sidebar-shadow) !important;
+  backdrop-filter: blur(28px) !important;
+  transition: background 0.3s ease, border 0.3s ease;
+}
+
+/* Upload Box */
+.arpis-upload-box {
+  background: var(--arp-upload-bg) !important;
+  border: 1px dashed var(--arp-upload-border) !important;
+  backdrop-filter: blur(20px);
+  transition: 0.28s ease;
+}
+
+.arpis-upload-box:hover {
+  border-color: var(--arp-accent);
+  background: var(--arp-accent-soft);
+}
+
+/* Main Page Background */
+body {
+  background: var(--arp-main-bg) !important;
+  transition: background 0.3s ease;
+}

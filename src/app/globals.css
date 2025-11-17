@@ -1,33 +1,43 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+:root[data-theme="dark"] {
+  --arpis-bg: #050507;
+  --arpis-bg-soft: #161622;
+  --arpis-card-bg: rgba(255,255,255,0.04);
+  --arpis-text: #f8f9ff;
+  --arpis-text-muted: #9aa0ad;
+  --arpis-border: rgba(255,255,255,0.12);
+  --arpis-glow: #29f4ff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root[data-theme="light"] {
+  --arpis-bg: #f4f7fb;
+  --arpis-bg-soft: #ffffff;
+  --arpis-card-bg: rgba(255,255,255,0.85);
+  --arpis-text: #1a1a1a;
+  --arpis-text-muted: #444;
+  --arpis-border: rgba(0,0,0,0.08);
+  --arpis-glow: #0077ff;
+}
+
+/* src/app/globals.css */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter",
+    "Plus Jakarta Sans", sans-serif;
+  background: radial-gradient(circle at top, #1b1b2f 0, #050507 55%);
+  color: #f5f7ff;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+  min-height: 100vh;
 }
 
 a {
@@ -35,8 +45,36 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+:root {
+  --arpis-bg: #050507;
+  --arpis-bg-soft: #161622;
+  --arpis-glass: rgba(255, 255, 255, 0.05);
+  --arpis-border: rgba(255, 255, 255, 0.12);
+  --arpis-cyan: #29f4ff;
+  --arpis-purple: #a855ff;
+  --arpis-text-muted: #a0a3b1;
+  --arpis-radius-lg: 18px;
+  --arpis-radius-xl: 24px;
+  --arpis-blur: 20px;
+  --arpis-shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--arpis-cyan), var(--arpis-purple));
+  border-radius: 999px;
+}
+
+body {
+  background: var(--arpis-bg);
+  color: var(--arpis-text);
+  transition: background 0.3s ease, color 0.3s ease;
 }
