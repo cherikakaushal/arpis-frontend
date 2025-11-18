@@ -8,6 +8,7 @@ export default function UploadPage() {
       </h1>
 
       <UploadBox />
+
     </div>
   );
 }

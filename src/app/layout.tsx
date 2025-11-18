@@ -13,13 +13,16 @@ const inter = Inter({
   display: "swap",
 });
 
-// ---------- METADATA (with favicon) ----------
+// META + FAVICON
 export const metadata: Metadata = {
   title: "ARPIS — AI Research Paper Intelligence System",
   description:
     "ARPIS is a futuristic AI-powered system for analyzing and summarizing research papers with scientific precision.",
+
   icons: {
-    icon: "/favicon.png", // ensure you place favicon.png in /public
+    icon: "/favicon.png?v=10",
+    shortcut: "/favicon.png?v=10",
+    apple: "/favicon.png?v=10",
   },
 };
 
@@ -30,24 +33,24 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-<head>
-  <link
-    rel="stylesheet"
-    href="https://www.w3schools.com/w3css/4/w3.css"
-  />
+      <head>
+        {/* W3CSS CDN */}
+        <link
+          rel="stylesheet"
+          href="https://www.w3schools.com/w3css/4/w3.css"
+        />
 
-  {/* FORCE NEW FAVICON */}
-  <link rel="shortcut icon" href="/favicon.ico?v=10" />
-  <link rel="icon" type="image/png" href="/favicon.png?v=10" />
-  <link rel="apple-touch-icon" href="/favicon.png?v=10" />
-</head>
+        {/* FAVICON OVERRIDES (SSR SAFE) */}
+        <link rel="icon" href="/favicon.png?v=10" type="image/png" />
+        <link rel="shortcut icon" href="/favicon.png?v=10" />
+        <link rel="apple-touch-icon" href="/favicon.png?v=10" />
+      </head>
 
-
-      <body className={inter.className}>
-        {/* PARTICLE BACKGROUND */}
+      <body className={inter.className} suppressHydrationWarning={true}>
+        {/* PARTICLE BACKGROUND (CLIENT-ONLY) */}
         <ParticleField />
 
-        {/* APP SHELL (Sidebar + Navbar + Content) */}
+        {/* FULL APP LAYOUT */}
         <AppShell>{children}</AppShell>
       </body>
     </html>

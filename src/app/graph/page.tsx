@@ -10,8 +10,12 @@ export default function CitationGraph() {
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext("2d")!;
     
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight - 80;
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight - 80;
+    }
+    resize();
+    window.addEventListener("resize", resize);
 
     const nodes = Array.from({ length: 22 }).map(() => ({
       x: Math.random() * canvas.width,
@@ -22,7 +26,11 @@ export default function CitationGraph() {
     }));
 
     function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // 🌙 always draw background using CSS variable (dark in light mode)
+      ctx.fillStyle = getComputedStyle(document.documentElement)
+        .getPropertyValue("--arp-graph-bg");
+
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Draw lines
       for (let i = 0; i < nodes.length; i++) {
@@ -42,7 +50,7 @@ export default function CitationGraph() {
         }
       }
 
-      // Draw glowing nodes
+      // Glowing nodes (unchanged)
       nodes.forEach((n) => {
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
@@ -51,11 +59,10 @@ export default function CitationGraph() {
         ctx.shadowColor = "cyan";
         ctx.fill();
 
-        // movement
         n.x += n.dx;
         n.y += n.dy;
 
-        // bounce from edges
+        // bounce
         if (n.x < 0 || n.x > canvas.width) n.dx *= -1;
         if (n.y < 0 || n.y > canvas.height) n.dy *= -1;
       });
@@ -64,6 +71,8 @@ export default function CitationGraph() {
     }
 
     animate();
+
+    return () => window.removeEventListener("resize", resize);
   }, []);
 
   return (

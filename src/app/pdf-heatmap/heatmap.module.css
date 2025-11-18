@@ -1,0 +1,116 @@
+.wrapper {
+  padding: 26px;
+}
+
+.title {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.subtitle {
+  opacity: 0.65;
+  margin-bottom: 18px;
+}
+
+.toggleRow {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.toggle {
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: var(--arp-surface);
+  border: 1px solid var(--arp-border-subtle);
+  color: var(--arp-text-main);
+  cursor: pointer;
+}
+
+.toggleActive {
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: var(--arp-accent);
+  border: none;
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* VIEWER LAYOUT */
+.viewer {
+  display: flex;
+  gap: 20px;
+  position: relative;
+}
+
+.sidebar {
+  width: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.thumb {
+  height: 90px;
+  border-radius: 10px;
+  background: var(--arp-surface);
+  border: 1px solid var(--arp-border-subtle);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.6;
+}
+
+.pdfPane {
+  flex: 1;
+  padding: 26px;
+  background: var(--arp-surface);
+  border: 1px solid var(--arp-border-subtle);
+  border-radius: 14px;
+  backdrop-filter: blur(18px);
+}
+
+/* Lines */
+.line {
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: 0.2s;
+  line-height: 1.5;
+}
+
+/* Heatmap Colors */
+:root {
+  --arp-heat-high: rgba(255, 80, 80, 0.35);
+  --arp-heat-mid: rgba(255, 200, 0, 0.25);
+  --arp-heat-low: rgba(0, 250, 255, 0.15);
+}
+
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  bottom: -60px;
+  left: 80px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--arp-surface);
+  border: 1px solid var(--arp-border-subtle);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+  font-size: 0.85rem;
+  max-width: 350px;
+  line-height: 1.4;
+  animation: fadeIn 0.2s ease;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

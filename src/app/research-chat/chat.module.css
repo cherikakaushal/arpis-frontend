@@ -1,0 +1,107 @@
+/* ---------- WRAPPER ---------- */
+
+.wrapper {
+  padding: 28px;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  color: var(--arp-text-main);
+}
+
+/* ---------- HEADER ---------- */
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.subtitle {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  color: var(--arp-text-muted);
+}
+
+/* ORB */
+
+.orbWrap {
+  position: relative;
+  width: 52px;
+  height: 52px;
+}
+
+.orbCore {
+  position: absolute;
+  inset: 18px;
+  background: white;
+  border-radius: 50%;
+  filter: blur(1px);
+  animation: pulse 2.4s ease-in-out infinite;
+  z-index: 3;
+}
+
+.orbGlow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, #66faff, #00d0ff 40%, #0077ff 75%, #001e3a);
+  animation: breathe 3s ease-in-out infinite, rotate 20s linear infinite;
+  z-index: 2;
+}
+
+.orbHalo {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 26px rgba(0, 255, 255, 0.75);
+  filter: blur(2px);
+  z-index: 1;
+}
+
+/* ANIMATIONS */
+
+@keyframes pulse {
+  0% { opacity: 0.8; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0.8; }
+}
+
+@keyframes breathe {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.07); }
+  100% { transform: scale(1); }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ---------- CHAT WINDOW ---------- */
+
+.chatWindow {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 6px;
+  margin-bottom: 12px;
+  scrollbar-width: thin;
+}
+
+/* Scrollbar for WebKit */
+.chatWindow::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chatWindow::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 255, 0.3);
+  border-radius: 999px;
+}
+
+/* ---------- MESSAGE ROWS ---------- */

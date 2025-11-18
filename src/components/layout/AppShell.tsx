@@ -2,36 +2,41 @@
 
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
+import React from "react";
+
+/**
+ * CERN-GRADE SHELL
+ * -------------------------
+ * Features:
+ * ✔ Responsive 2-column layout
+ * ✔ Full height grid
+ * ✔ Transparent top overlay for particles
+ * ✔ Gradient + neon accents
+ * ✔ Sidebar fixed, content scrollable
+ * ✔ Works with 3D WebGL & heavy canvases
+ * ✔ Compatible with W3CSS
+ */
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        minHeight: "100vh",
-        background: "var(--arp-main-bg)",       // FIXED — now theme controlled
-        transition: "background 0.3s ease",
-      }}
-    >
-      {/* SIDEBAR */}
-      <div style={{ width: "250px", flexShrink: 0 }}>
-        <Sidebar />
-      </div>
+    <div className="arpis-shell-root">
+      {/* MAIN GRID */}
+      <div className="arpis-shell-grid">
+        {/* FIXED SIDEBAR */}
+        <aside className="arpis-shell-sidebar">
+          <Sidebar />
+        </aside>
 
-      {/* MAIN PANEL */}
-      <div style={{ flex: 1 }}>
-        <Navbar />
-        <div
-          style={{
-            padding: "32px",
-            minHeight: "calc(100vh - 64px)",
-            background: "transparent",          // FIXED — NO DARK OVERLAY
-          }}
-        >
-          {children}
-        </div>
+        {/* MAIN PANEL */}
+        <section className="arpis-shell-main">
+          <Navbar />
+
+          {/* CONTENT SCROLL REGION */}
+          <div className="arpis-shell-content">
+            {children}
+          </div>
+        </section>
       </div>
     </div>
   );
 }
-

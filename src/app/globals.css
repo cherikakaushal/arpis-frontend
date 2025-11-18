@@ -84,3 +84,164 @@ body {
   box-shadow: 0 0 20px var(--arp-accent);
   border-color: var(--arp-accent);
 }
+
+.arpis-result-panel {
+  border-radius: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: radial-gradient(circle at 0 0, rgba(45, 212, 191, 0.16), rgba(15, 23, 42, 0.98));
+  padding: 1.25rem 1.4rem;
+}
+
+.arpis-terminal {
+  font-family: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  background: radial-gradient(circle at 0 0, rgba(34, 197, 94, 0.15), rgba(15, 23, 42, 0.98));
+  border-radius: 1rem;
+  border: 1px solid rgba(52, 211, 153, 0.5);
+  padding: 1rem 1.2rem;
+  font-size: 0.8rem;
+}
+
+.arpis-terminal-line {
+  color: #bbf7d0;
+  margin-bottom: 0.25rem;
+}
+
+/* ==========================================================
+   CERN-GRADE APPSHELL
+   ========================================================== */
+
+.arpis-shell-root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+
+  /* Neon laboratory background */
+  background: radial-gradient(
+      circle at 20% 10%,
+      rgba(0, 255, 200, 0.08),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 80% 90%,
+      rgba(110, 0, 255, 0.12),
+      transparent 45%
+    ),
+    var(--arp-main-bg, #0a0f1f);
+
+  overflow: hidden;
+  transition: background 0.4s ease-in-out;
+}
+
+/* 2-Column Grid */
+.arpis-shell-grid {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  height: 100vh;
+}
+
+/* SIDEBAR */
+.arpis-shell-sidebar {
+  position: relative;
+  z-index: 20;
+
+  height: 100vh;
+  overflow-y: auto;
+
+  background: rgba(8, 12, 24, 0.82);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+}
+
+/* MAIN PANEL */
+.arpis-shell-main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* CONTENT SCROLL AREA */
+.arpis-shell-content {
+  position: relative;
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px;
+
+  /* Soft neon edges */
+  backdrop-filter: blur(12px);
+}
+
+/* RESPONSIVE (Mobile / Tablet) */
+@media (max-width: 900px) {
+  .arpis-shell-grid {
+    grid-template-columns: 0px 1fr; /* Sidebar collapsed */
+  }
+
+  .arpis-shell-sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .arpis-shell-content {
+    padding: 16px;
+  }
+}
+
+:root {
+  --arp-text-main: #d4d8e1;
+  --arp-accent: #58eaff;
+  --arp-bg-alt: rgba(10, 15, 30, 0.75);
+  --arp-border-subtle: rgba(255, 255, 255, 0.08);
+}
+
+/* Light mode */
+html.light {
+  --arp-text-main: #1a1a1a;
+  --arp-accent: #008aff;
+  --arp-bg-alt: rgba(240, 240, 240, 0.9);
+  --arp-border-subtle: rgba(0, 0, 0, 0.08);
+}
+
+/* Animations kept (same as your original) */
+@keyframes arpis-pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.28); }
+}
+
+@keyframes arpis-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+@keyframes arpis-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Sidebar scrollbar styling */
+.arpis-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.arpis-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 255, 0.35);
+  border-radius: 999px;
+}
+
+.arpis-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 255, 0.55);
+}

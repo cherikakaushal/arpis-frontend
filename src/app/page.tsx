@@ -1,7 +1,20 @@
 "use client";
+
+import { useState } from "react";
 import Image from "next/image";
 
 export default function HomePage() {
+  const [url, setUrl] = useState("");
+
+  const handleFetch = () => {
+    if (!url.trim()) {
+      alert("Paste a research paper link first.");
+      return;
+    }
+    localStorage.setItem("arpis_link_to_fetch", url);
+    window.location.href = "/fetch";
+  };
+
   const sites = [
     {
       name: "Google Scholar",
@@ -32,22 +45,74 @@ export default function HomePage() {
       logo: "/logos/ieee.png",
       link: "https://ieeexplore.ieee.org",
       color: "linear-gradient(135deg, #6366f155, #4f46e533)",
-    }
+    },
   ];
 
   return (
     <div
       className="w3-animate-opacity"
       style={{
-        padding: "30px 10px",
+        padding: "40px 14px",
         display: "grid",
         justifyContent: "center",
+        maxWidth: "1000px",
+        margin: "0 auto",
       }}
     >
+      {/* ===================== */}
+      {/*  PASTE LINK BOX       */}
+      {/* ===================== */}
+      <div style={{ marginBottom: "40px", width: "100%" }}>
+        <h2
+          style={{
+            fontSize: "1.6rem",
+            marginBottom: "16px",
+            fontWeight: 700,
+          }}
+        >
+          Paste Research Paper Link
+        </h2>
+
+        <input
+          type="text"
+          placeholder="Paste Google Scholar / arXiv / PubMed link…"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+          style={{
+            width: "100%",
+            padding: "14px 18px",
+            borderRadius: "14px",
+            border: "1px solid var(--arp-border-subtle)",
+            background: "var(--arp-bg-alt)",
+            color: "var(--arp-text-main)",
+            fontSize: "1rem",
+            marginBottom: "14px",
+          }}
+        />
+
+        <button
+          onClick={handleFetch}
+          className="w3-button w3-round-large"
+          style={{
+            padding: "12px 26px",
+            background: "var(--arpis-cyan)",
+            color: "black",
+            fontWeight: 600,
+            boxShadow: "0 0 15px rgba(36,227,255,0.4)",
+          }}
+        >
+          Fetch Paper Metadata →
+        </button>
+      </div>
+
+      {/* ===================== */}
+      {/*  SOURCES GRID         */}
+      {/* ===================== */}
       <h1
         style={{
           fontSize: "2rem",
-          marginBottom: "30px",
+          marginBottom: "25px",
+          fontWeight: 700,
         }}
       >
         Research Sources
@@ -58,7 +123,6 @@ export default function HomePage() {
           display: "grid",
           gap: "28px",
           gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-          maxWidth: "900px",
           width: "100%",
         }}
       >
