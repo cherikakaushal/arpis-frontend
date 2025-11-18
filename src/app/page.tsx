@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import PlaylabOrb from "@/components/PlaylabOrb";
+import HeroGraph from "@/components/HeroGraph";
 
 export default function HomePage() {
   const [url, setUrl] = useState("");
@@ -17,37 +19,16 @@ export default function HomePage() {
         window.location.href = "/fetch";
       }
     } catch {
-      // fail silently, still navigate
       window.location.href = "/fetch";
     }
   };
 
   const sites = [
-    {
-      name: "Google Scholar",
-      logo: "/logos/google.png",
-      link: "https://scholar.google.com",
-    },
-    {
-      name: "arXiv",
-      logo: "/logos/arxiv.png",
-      link: "https://arxiv.org",
-    },
-    {
-      name: "Semantic Scholar",
-      logo: "/logos/semantic.png",
-      link: "https://www.semanticscholar.org",
-    },
-    {
-      name: "PubMed",
-      logo: "/logos/pubmed.png",
-      link: "https://pubmed.ncbi.nlm.nih.gov",
-    },
-    {
-      name: "IEEE Xplore",
-      logo: "/logos/ieee.png",
-      link: "https://ieeexplore.ieee.org",
-    },
+    { name: "Google Scholar", logo: "/logos/google.png", link: "https://scholar.google.com" },
+    { name: "arXiv", logo: "/logos/arxiv.png", link: "https://arxiv.org" },
+    { name: "Semantic Scholar", logo: "/logos/semantic.png", link: "https://www.semanticscholar.org" },
+    { name: "PubMed", logo: "/logos/pubmed.png", link: "https://pubmed.ncbi.nlm.nih.gov" },
+    { name: "IEEE Xplore", logo: "/logos/ieee.png", link: "https://ieeexplore.ieee.org" },
   ];
 
   return (
@@ -59,35 +40,24 @@ export default function HomePage() {
         margin: "0 auto",
       }}
     >
-      {/* ===================== */}
-      {/* HERO + URL CARD       */}
-      {/* ===================== */}
-      <section className="w3-row-padding w3-margin-bottom">
-        {/* Left: hero copy + CTAs */}
-        <div className="w3-col l7 m12 s12" style={{ marginBottom: "24px" }}>
-          <div style={{ marginBottom: "8px" }}>
-            <span
-              className="w3-small"
-              style={{
-                padding: "6px 12px",
-                borderRadius: "999px",
-                background: "var(--arp-bg-alt)",
-                border: "1px solid var(--arp-border-subtle)",
-                color: "var(--arp-text-main)",
-                opacity: 0.9,
-              }}
-            >
-              Mock AI Mode · Frontend Demo
-            </span>
-          </div>
-
+      {/* =============================== */}
+      {/*         HERO SECTION            */}
+      {/* =============================== */}
+      <section
+        className="w3-row-padding"
+        style={{
+          marginTop: "40px",
+          marginBottom: "60px",
+        }}
+      >
+        {/* LEFT */}
+        <div className="w3-col l7 m12 s12" style={{ marginBottom: "32px" }}>
           <h1
             style={{
-              fontSize: "3rem",
-              lineHeight: 1.1,
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              margin: "18px 0 6px",
+              fontSize: "3.6rem",
+              fontWeight: 800,
+              margin: "0 0 14px",
+              letterSpacing: "0.018em",
             }}
           >
             ARPIS
@@ -95,95 +65,95 @@ export default function HomePage() {
 
           <p
             style={{
-              fontSize: "1.05rem",
-              maxWidth: "520px",
-              margin: "0 0 24px",
-              opacity: 0.85,
+              fontSize: "1.2rem",
+              maxWidth: "560px",
+              opacity: 0.9,
+              marginBottom: "30px",
+              lineHeight: "1.55",
             }}
           >
-            AI Research Paper Intelligence System — accelerate scientific
-            discovery with structured summaries, citation graphs, and comparison
-            dashboards.
+            AI Research Paper Intelligence System — summaries, embeddings,
+            semantic graphs, comparisons, and structured insights.
+            Built for scientists, engineers, and the academically obsessed.
           </p>
 
+          {/* BUTTONS */}
           <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
             <a
               href="/upload"
               className="w3-button w3-round-xxlarge"
               style={{
-                padding: "12px 28px",
-                background:
-                  "linear-gradient(135deg, var(--arpis-cyan), #ff00aa)",
-                border: "none",
-                color: "black",
+                padding: "12px 30px",
+                background: "linear-gradient(135deg, #00d0ff, #006dff)",
+                color: "#fff",
                 fontWeight: 600,
-                boxShadow: "0 0 18px rgba(36,227,255,0.5)",
-                whiteSpace: "nowrap",
+                letterSpacing: "0.01em",
+                boxShadow: "0 4px 16px rgba(0,140,255,0.22)",
               }}
             >
-              🚀 Upload Research Paper
+              Upload Paper
             </a>
 
             <a
               href="/results"
               className="w3-button w3-round-xxlarge"
               style={{
-                padding: "12px 26px",
-                background: "var(--arp-bg-alt)",
+                padding: "12px 30px",
+                background: "rgba(255,255,255,0.06)",
                 border: "1px solid var(--arp-border-subtle)",
                 color: "var(--arp-text-main)",
                 fontWeight: 500,
-                whiteSpace: "nowrap",
               }}
             >
-              ⚡ Try Demo (Sample Paper)
+              Sample Paper
             </a>
           </div>
 
-          <div
-            style={{
-              marginTop: "14px",
-              fontSize: "0.85rem",
-              opacity: 0.7,
-            }}
-          >
-            Or jump into your{" "}
+          <div style={{ marginTop: "14px", opacity: 0.75 }}>
+            Or jump into{" "}
             <a
               href="/workspace"
               style={{
-                textDecoration: "none",
                 color: "var(--arpis-cyan)",
-                fontWeight: 500,
+                textDecoration: "none",
+                fontWeight: 600,
               }}
             >
-              ARPIS Workspace →
+              Workspace →
             </a>
           </div>
         </div>
 
-        {/* Right: paste URL card */}
+        {/* RIGHT — GRAPH + URL CARD */}
         <div className="w3-col l5 m12 s12">
+          {/* SEMANTIC GRAPH */}
           <div
-            className="w3-card-4 w3-round-xxlarge"
             style={{
-              padding: "20px 18px 18px",
+              width: "100%",
+              height: "240px",
+              borderRadius: "20px",
+              overflow: "hidden",
+              background: "var(--arp-bg-alt)",
+              border: "1px solid var(--arp-border-subtle)",
+              boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+            }}
+          >
+            <HeroGraph />
+          </div>
+
+          {/* URL INPUT */}
+          <div
+            className="w3-round-xxlarge"
+            style={{
+              marginTop: "16px",
+              padding: "18px 16px",
               background: "var(--arp-bg-alt)",
               border: "1px solid var(--arp-border-subtle)",
             }}
           >
-            <h3
-              style={{
-                margin: "0 0 12px",
-                fontSize: "1.1rem",
-                fontWeight: 600,
-              }}
-            >
-              Paste Research Paper Link
-            </h3>
-
             <input
               type="text"
-              placeholder="Paste Google Scholar / arXiv / PubMed link…"
+              placeholder="Paste Google Scholar / arXiv link…"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               style={{
@@ -193,9 +163,7 @@ export default function HomePage() {
                 border: "1px solid var(--arp-border-subtle)",
                 background: "transparent",
                 color: "var(--arp-text-main)",
-                fontSize: "0.95rem",
                 marginBottom: "12px",
-                outline: "none",
               }}
             />
 
@@ -205,117 +173,73 @@ export default function HomePage() {
               style={{
                 padding: "11px 18px",
                 background: "var(--arpis-cyan)",
-                color: "black",
+                color: "#000",
                 fontWeight: 600,
-                boxShadow: "0 0 12px rgba(36,227,255,0.4)",
+                letterSpacing: "0.01em",
               }}
             >
-              Fetch Paper Metadata →
+              Fetch Metadata →
             </button>
-
-            <p
-              style={{
-                fontSize: "0.75rem",
-                marginTop: "8px",
-                opacity: 0.7,
-              }}
-            >
-              ARPIS will store this link locally and open the Fetch console.
-            </p>
           </div>
         </div>
       </section>
 
-      {/* ===================== */}
-      {/*   PROBLEM STRIP       */}
-      {/* ===================== */}
+      {/* =============================== */}
+      {/*      PROBLEM STRIP              */}
+      {/* =============================== */}
       <section className="w3-row-padding w3-margin-bottom">
-        <div className="w3-col s12">
-          <h2
-            style={{
-              fontSize: "1.3rem",
-              marginBottom: "4px",
-              fontWeight: 600,
-            }}
-          >
+        <div className="w3-col s12" style={{ marginBottom: "20px" }}>
+          <h2 style={{ fontSize: "1.45rem", fontWeight: 700, marginBottom: "6px" }}>
             Research analysis is slow, repetitive, and overwhelming.
           </h2>
-          <p style={{ fontSize: "0.95rem", opacity: 0.75, marginBottom: "18px" }}>
-            ARPIS is built to remove the grunt work so you can think.
+          <p style={{ fontSize: "0.97rem", opacity: 0.75 }}>
+            ARPIS removes the grunt work so you can focus on thinking.
           </p>
         </div>
 
         {[
           {
             title: "Endless reading",
-            body: "Reviewing tens of dense PDFs can delay actual research work by weeks.",
+            body: "Reviewing tens of dense PDFs delays real research by weeks.",
           },
           {
             title: "Hard to compare results",
-            body: "Manually tracking baselines, datasets, and methods is error-prone.",
+            body: "Baselines, datasets, and methods are scattered across papers.",
           },
           {
-            title: "Equations & citations chaos",
-            body: "Extracting math and building citation maps slows everyone down.",
+            title: "Equations & citation chaos",
+            body: "Extracting math and mapping citations slows everyone down.",
           },
         ].map((p, idx) => (
-          <div key={p.title} className="w3-col l4 m12 s12" style={{ marginBottom: "16px" }}>
+          <div key={idx} className="w3-col l4 m12 s12" style={{ marginBottom: "16px" }}>
             <div
               className="w3-round-xlarge"
               style={{
-                padding: "16px 18px 18px",
+                padding: "18px 20px",
                 background: "var(--arp-bg-alt)",
                 border: "1px solid var(--arp-border-subtle)",
                 height: "100%",
               }}
             >
-              <div
-                style={{
-                  fontSize: "0.8rem",
-                  opacity: 0.7,
-                  marginBottom: "6px",
-                }}
-              >
-                Pain #{idx + 1}
-              </div>
-              <div
-                style={{
-                  fontWeight: 600,
-                  marginBottom: "6px",
-                  fontSize: "1rem",
-                }}
-              >
+              <div style={{ fontSize: "0.8rem", opacity: 0.7 }}>Pain #{idx + 1}</div>
+              <div style={{ fontWeight: 600, margin: "4px 0", fontSize: "1.1rem" }}>
                 {p.title}
               </div>
-              <p
-                style={{
-                  fontSize: "0.9rem",
-                  opacity: 0.8,
-                  margin: 0,
-                }}
-              >
-                {p.body}
-              </p>
+              <p style={{ fontSize: "0.9rem", opacity: 0.8 }}>{p.body}</p>
             </div>
           </div>
         ))}
       </section>
 
-      {/* ===================== */}
-      {/*   SOURCES GRID        */}
-      {/* ===================== */}
-      <section style={{ marginTop: "32px" }}>
-        <h2
-          style={{
-            fontSize: "1.3rem",
-            marginBottom: "6px",
-            fontWeight: 600,
-          }}
-        >
+      {/* =============================== */}
+      {/*     SOURCES GRID                */}
+      {/* =============================== */}
+      <section style={{ marginTop: "45px" }}>
+        <h2 style={{ fontSize: "1.35rem", fontWeight: 700, marginBottom: "8px" }}>
           Start from trusted research indexes.
         </h2>
-        <p style={{ fontSize: "0.95rem", opacity: 0.75, marginBottom: "18px" }}>
-          Open any source, copy a link, and let ARPIS handle the heavy lifting.
+        <p style={{ fontSize: "0.95rem", opacity: 0.75, marginBottom: "20px" }}>
+          Open any source, copy a link, and let ARPIS do the rest.
         </p>
 
         <div
@@ -334,32 +258,18 @@ export default function HomePage() {
               className="w3-round-xxlarge"
               style={{
                 padding: "18px 20px",
-                textDecoration: "none",
                 background: "var(--arp-bg-alt)",
                 border: "1px solid var(--arp-border-subtle)",
+                textDecoration: "none",
                 display: "flex",
-                alignItems: "center",
                 justifyContent: "space-between",
-                gap: "16px",
-                transition: "transform 0.18s ease, box-shadow 0.18s ease",
+                alignItems: "center",
+                transition: "0.2s ease",
               }}
             >
               <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                <Image
-                  src={s.logo}
-                  alt={s.name}
-                  width={36}
-                  height={36}
-                  style={{ borderRadius: "10px" }}
-                />
-                <span
-                  style={{
-                    fontSize: "1rem",
-                    fontWeight: 600,
-                  }}
-                >
-                  {s.name}
-                </span>
+                <Image src={s.logo} alt={s.name} width={36} height={36} />
+                <span style={{ fontWeight: 600 }}>{s.name}</span>
               </div>
               <span style={{ fontSize: "1.6rem", opacity: 0.6 }}>→</span>
             </a>
@@ -367,48 +277,32 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===================== */}
-      {/*   CTA + FOOTER        */}
-      {/* ===================== */}
-      <section
-        className="w3-margin-top"
-        style={{ marginTop: "40px" }}
-      >
+      {/* =============================== */}
+      {/*         CTA SECTION             */}
+      {/* =============================== */}
+      <section style={{ marginTop: "60px" }}>
         <div
           className="w3-round-xxlarge"
           style={{
-            padding: "26px 26px 24px",
+            padding: "28px 26px",
             background: "var(--arp-bg-alt)",
             border: "1px solid var(--arp-border-subtle)",
           }}
         >
           <div className="w3-row-padding">
-            <div className="w3-col l8 m12 s12" style={{ marginBottom: "10px" }}>
-              <h3
-                style={{
-                  margin: "0 0 4px",
-                  fontSize: "1.3rem",
-                  fontWeight: 600,
-                }}
-              >
+            <div className="w3-col l8 m12 s12">
+              <h3 style={{ fontSize: "1.35rem", fontWeight: 700, marginBottom: "6px" }}>
                 Ready to accelerate your next literature review?
               </h3>
-              <p
-                style={{
-                  margin: 0,
-                  fontSize: "0.95rem",
-                  opacity: 0.8,
-                }}
-              >
-                Upload a paper, explore the mock dashboards, and imagine this
-                wired to a full backend pipeline.
+              <p style={{ opacity: 0.8 }}>
+                Upload a paper, explore the dashboards, and imagine this powered end-to-end.
               </p>
             </div>
+
             <div
               className="w3-col l4 m12 s12"
               style={{
                 display: "flex",
-                alignItems: "center",
                 justifyContent: "flex-end",
                 gap: "12px",
                 flexWrap: "wrap",
@@ -418,54 +312,114 @@ export default function HomePage() {
                 href="/upload"
                 className="w3-button w3-round-xxlarge"
                 style={{
-                  padding: "10px 24px",
-                  background:
-                    "linear-gradient(135deg, var(--arpis-cyan), #ff00aa)",
-                  border: "none",
+                  padding: "12px 26px",
+                  background: "linear-gradient(135deg, var(--arpis-cyan), #ff00aa)",
                   color: "black",
                   fontWeight: 600,
-                  whiteSpace: "nowrap",
                 }}
               >
-                🚀 Upload your first paper
+                Upload your first paper
               </a>
+
               <a
                 href="/graph"
                 className="w3-button w3-round-xxlarge"
                 style={{
-                  padding: "10px 22px",
+                  padding: "12px 24px",
                   background: "transparent",
                   border: "1px solid var(--arp-border-subtle)",
                   color: "var(--arp-text-main)",
-                  fontSize: "0.9rem",
-                  whiteSpace: "nowrap",
                 }}
               >
-                View 3D Citation Universe
+                View 3D Universe
               </a>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* footer line */}
+      {/* =============================== */}
+      {/*         PLAYLAB SECTION         */}
+      {/* =============================== */}
+      <section style={{ marginTop: "70px", marginBottom: "45px" }}>
+        <div
+          className="w3-round-xxlarge"
+          style={{
+            padding: "26px 24px",
+            background: "linear-gradient(145deg, rgba(255,255,255,0.04), rgba(0,0,20,0.32))",
+            border: "1px solid rgba(255,255,255,0.07)",
+            backdropFilter: "blur(14px)",
+            boxShadow: "0 14px 28px rgba(0,0,0,0.22)",
+          }}
+        >
           <div
+            className="w3-row"
             style={{
-              marginTop: "18px",
-              borderTop: "1px solid var(--arp-border-subtle)",
-              paddingTop: "10px",
               display: "flex",
-              justifyContent: "space-between",
-              fontSize: "0.8rem",
-              opacity: 0.7,
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: "26px",
             }}
           >
-            <span>© 2025 ARPIS · All rights reserved.</span>
-            <span>
-              Created by{" "}
-              <span style={{ fontWeight: 500 }}>Cherika Kaushal</span>
-            </span>
+            {/* LEFT */}
+            <div style={{ flex: 1, minWidth: "240px" }}>
+              <div style={{ opacity: 0.6, fontSize: "0.85rem" }}>Break Zone</div>
+
+              <h2
+                style={{
+                  fontSize: "2rem",
+                  margin: "10px 0",
+                  fontWeight: 700,
+                }}
+              >
+                ARPIS PlayLab
+              </h2>
+
+              <p style={{ opacity: 0.8, marginBottom: "20px" }}>
+                Micro-games to recharge your brain between papers.
+              </p>
+
+              <a
+                href="/playlab"
+                className="w3-button w3-round-xxlarge"
+                style={{
+                  padding: "12px 28px",
+                  background: "linear-gradient(135deg, #00f7ff, #7b2cff, #ff00aa)",
+                  color: "#020008",
+                  fontWeight: 600,
+                }}
+              >
+                Launch PlayLab →
+              </a>
+            </div>
+
+            {/* RIGHT — ORB */}
+            <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
+              <PlaylabOrb />
+            </div>
           </div>
         </div>
       </section>
+
+      {/* =============================== */}
+      {/*            FOOTER               */}
+      {/* =============================== */}
+      <footer
+        style={{
+          marginTop: "40px",
+          borderTop: "1px solid var(--arp-border-subtle)",
+          paddingTop: "12px",
+          fontSize: "0.85rem",
+          opacity: 0.7,
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <span>© 2025 ARPIS — All rights reserved.</span>
+        <span>
+          by <strong style={{ opacity: 0.9 }}>Cherika Kaushal</strong>
+        </span>
+      </footer>
     </main>
   );
 }

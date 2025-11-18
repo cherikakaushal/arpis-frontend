@@ -245,3 +245,43 @@ html.light {
 .arpis-sidebar::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 255, 255, 0.55);
 }
+
+/* Floating holographic grid */
+.arp-grid-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+      rgba(255,255,255,0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.05) 1px,
+      transparent 1px
+    );
+  background-size: 50px 50px;
+  animation: gridMove 14s linear infinite;
+  opacity: 0.15;
+}
+
+@keyframes gridMove {
+  0% { transform: translateY(0) translateX(0); }
+  100% { transform: translateY(-200px) translateX(-200px); }
+}
+
+/* Accent sweep under ARPIS text */
+.arpis-sweep {
+  background: linear-gradient(90deg, #00f7ff22, #ff00aa33, transparent);
+  height: 8px;
+  width: 140px;
+  border-radius: 999px;
+  margin-top: 4px;
+  animation: sweepGlow 4s infinite;
+}
+
+@keyframes sweepGlow {
+  0% { opacity: 0.1; transform: translateX(0px); }
+  50% { opacity: 0.7; transform: translateX(40px); }
+  100% { opacity: 0.1; transform: translateX(0px); }
+}

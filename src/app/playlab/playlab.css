@@ -1,0 +1,88 @@
+/**********************************************
+  PLAYLAB THEME — WORKS FOR BOTH LIGHT & DARK
+**********************************************/
+
+/* == Glass cards == */
+.playlab-card,
+.game-card {
+  border-radius: 22px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: 0.25s ease;
+  padding: 24px;
+  border: 1px solid var(--arp-border-subtle);
+}
+
+/* Light mode glass */
+:root.light .playlab-card,
+:root.light .game-card {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.75),
+    rgba(220, 240, 255, 0.55)
+  );
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Dark mode glass */
+:root:not(.light) .playlab-card,
+:root:not(.light) .game-card {
+  background: linear-gradient(
+    145deg,
+    rgba(0, 10, 25, 0.55),
+    rgba(0, 0, 50, 0.32)
+  );
+  border-color: rgba(0, 247, 255, 0.08);
+}
+
+/**********************************************
+  GAME GRID BUTTONS — NEURAL FOCUS
+**********************************************/
+.playlab-cell {
+  border-radius: 18px;
+  height: 64px;
+  transition: 0.14s;
+  border: 1px solid var(--arp-border-subtle);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+/* Light mode */
+:root.light .playlab-cell {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* Active pulse */
+.playlab-cell.active {
+  background: radial-gradient(circle at center, #00f7ff, #7b2cff);
+  border-color: #00f7ff;
+  box-shadow: 0 0 22px rgba(0, 247, 255, 0.75);
+}
+
+/**********************************************
+  BUTTONS
+**********************************************/
+.playlab-button {
+  padding: 12px 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.playlab-button.primary {
+  background: linear-gradient(135deg, #00f7ff, #7b2cff, #ff00aa);
+  color: #02000a;
+}
+
+.playlab-button.primary:hover {
+  transform: translateY(-1px);
+}
+
+.playlab-button.secondary {
+  background: var(--arp-surface-2);
+  border: 1px solid var(--arp-border-subtle);
+  color: var(--arp-text-main);
+}
