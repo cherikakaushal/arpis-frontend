@@ -139,3 +139,23 @@ a.secondary {
     --button-secondary-border: #1a1a1a;
   }
 }
+
+/* styles/theme.css */
+
+/* Force dark mode always, ignore system light theme */
+:root {
+  color-scheme: dark;
+}
+
+/* Make sure background is always dark, even in light mode */
+html,
+body,
+.arpis-root {
+  background-color: #020008;
+  color: #f9fafb;
+}
+
+/* Optional: smooth text + no weird white flashes */
+body.arpis-root {
+  min-height: 100vh;
+}

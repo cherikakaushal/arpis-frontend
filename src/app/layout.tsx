@@ -46,7 +46,10 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/favicon.png?v=10" />
       </head>
 
-      <body className={inter.className} suppressHydrationWarning={true}>
+      <body
+        className={`${inter.className} arpis-root`}
+        suppressHydrationWarning={true}
+      >
         {/* PARTICLE BACKGROUND (CLIENT-ONLY) */}
         <ParticleField />
 
