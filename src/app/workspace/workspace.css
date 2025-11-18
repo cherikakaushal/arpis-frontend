@@ -1,4 +1,7 @@
-/* Container Layout */
+/* ====================================================== */
+/*                    WORKSPACE LAYOUT                    */
+/* ====================================================== */
+
 .workspace-container {
   display: flex;
   gap: 28px;
@@ -6,14 +9,30 @@
   animation: fadeIn 0.6s;
 }
 
-/* Sidebar */
+/* ====================================================== */
+/*                        SIDEBAR                         */
+/* ====================================================== */
+
 .workspace-sidebar {
   width: 240px;
   padding: 24px;
   border-radius: 18px;
-  background: linear-gradient(180deg, rgba(15, 20, 30, 0.7), rgba(10, 12, 20, 0.85));
+  background: linear-gradient(
+    180deg,
+    rgba(15, 20, 30, 0.7),
+    rgba(10, 12, 20, 0.85)
+  );
   border: 1px solid rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(14px);
+}
+
+:root.light .workspace-sidebar {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.85),
+    rgba(245, 245, 255, 0.92)
+  ) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
 }
 
 .sidebar-title {
@@ -22,11 +41,14 @@
   margin-bottom: 18px;
 }
 
-/* Nav */
+/* ====================================================== */
+/*                     SIDEBAR NAV                        */
+/* ====================================================== */
+
 .workspace-nav {
   list-style: none;
   padding: 0;
-  margin: 0 0 20px;
+  margin: 0 0 22px;
 }
 
 .workspace-nav li {
@@ -34,13 +56,13 @@
   border-radius: 12px;
   cursor: pointer;
   opacity: 0.75;
-  transition: 0.25s;
   font-size: 0.95rem;
+  transition: 0.25s;
 }
 
 .workspace-nav li:hover {
   opacity: 1;
-  background: rgba(0, 200, 255, 0.14);
+  background: rgba(0, 200, 255, 0.15);
 }
 
 .workspace-nav li.active {
@@ -50,20 +72,44 @@
   border-left: 3px solid #00eaff;
 }
 
-/* Add Button */
+/* Light Mode */
+:root.light .workspace-nav li {
+  color: #222;
+}
+
+:root.light .workspace-nav li:hover {
+  background: rgba(0, 120, 255, 0.12);
+}
+
+:root.light .workspace-nav li.active {
+  background: rgba(0, 120, 255, 0.18);
+  border-left: 3px solid #007bff;
+}
+
+/* ====================================================== */
+/*                    ADD PAPER BUTTON                    */
+/* ====================================================== */
+
 .add-button {
-  width: 100%;
   padding: 12px;
+  width: 100%;
   border-radius: 14px;
   border: none;
-  font-size: 0.95rem;
   background: linear-gradient(135deg, #00d0ff, #006dff);
   color: white;
   font-weight: 600;
   cursor: pointer;
 }
 
-/* Main */
+:root.light .add-button {
+  background: linear-gradient(135deg, #00c4ff, #5985ff);
+  color: #001b33;
+}
+
+/* ====================================================== */
+/*                       MAIN AREA                        */
+/* ====================================================== */
+
 .workspace-main {
   flex: 1;
 }
@@ -78,49 +124,98 @@
   margin-bottom: 22px;
 }
 
-/* Paper Grid */
+:root.light .workspace-title,
+:root.light .workspace-sub {
+  color: #111;
+}
+
+/* ====================================================== */
+/*                     PAPER GRID                         */
+/* ====================================================== */
+
 .paper-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
 }
 
-/* Cards */
+/* ====================================================== */
+/*                     PAPER CARD                         */
+/* ====================================================== */
+
 .paper-card {
   padding: 20px;
   border-radius: 18px;
-  background: linear-gradient(160deg, rgba(20,20,28,0.8), rgba(10,10,18,0.9));
-  border: 1px solid rgba(255,255,255,0.06);
+  background: linear-gradient(
+    160deg,
+    rgba(20, 20, 28, 0.8),
+    rgba(10, 10, 18, 0.92)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(14px);
+  transition: 0.25s;
   cursor: pointer;
-  transition: 0.25s ease;
-  position: relative;
 }
 
 .paper-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 28px rgba(0, 200, 255, 0.12);
+  box-shadow: 0 8px 28px rgba(0, 200, 255, 0.15);
 }
 
-/* Header */
-.paper-header {
-  display: flex;
-  justify-content: space-between;
+/* ---- LIGHT MODE CARDS ---- */
+
+:root.light .paper-card {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.80),
+    rgba(245, 245, 255, 0.92)
+  ) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  color: #111 !important;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.06);
 }
 
-.paper-header h4 {
-  font-size: 1.05rem;
-  font-weight: 600;
-  line-height: 1.3;
+:root.light .paper-card:hover {
+  box-shadow: 0 14px 36px rgba(0, 120, 255, 0.18);
 }
 
-/* Favorite */
+/* ====================================================== */
+/*                    TAGS + META                         */
+/* ====================================================== */
+
+.paper-meta {
+  margin: 8px 0;
+  opacity: 0.75;
+  font-size: 0.85rem;
+}
+
+:root.light .paper-meta {
+  opacity: 0.6;
+}
+
+.tag {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.12);
+}
+
+:root.light .tag {
+  background: rgba(0,0,0,0.08);
+  color: #333;
+}
+
+/* ====================================================== */
+/*                   FAVORITE BUTTON                      */
+/* ====================================================== */
+
 .fav-btn {
   font-size: 1.3rem;
   background: none;
   border: none;
   cursor: pointer;
-  opacity: 0.5;
+  opacity: 0.45;
+  transition: 0.2s;
 }
 
 .fav-btn.active {
@@ -129,40 +224,124 @@
   text-shadow: 0 0 10px gold;
 }
 
-/* Meta */
-.paper-meta {
-  margin: 8px 0;
-  opacity: 0.75;
-  font-size: 0.85rem;
-}
+/* ====================================================== */
+/*                    GRAPH PLACEHOLDER                   */
+/* ====================================================== */
 
-/* Tags */
-.tag {
-  padding: 4px 10px;
-  font-size: 0.75rem;
-  background: rgba(255,255,255,0.1);
-  border-radius: 10px;
-  margin-right: 6px;
-}
-
-/* Graph Placeholder */
 .paper-graph {
   margin-top: 14px;
   height: 60px;
   border-radius: 14px;
-  background: radial-gradient(circle, rgba(0,200,255,0.25), transparent 70%);
   opacity: 0.25;
+  background: radial-gradient(circle, rgba(0, 200, 255, 0.25), transparent 70%);
 }
 
-/* Empty State */
+:root.light .paper-graph {
+  background: radial-gradient(circle, rgba(0, 120, 255, 0.25), transparent 70%);
+  opacity: 0.32;
+}
+
+/* ====================================================== */
+/*                       EMPTY STATE                      */
+/* ====================================================== */
+
 .empty {
   padding: 40px;
   text-align: center;
   opacity: 0.6;
 }
 
-/* Animations */
+/* ====================================================== */
+/*                     ANIMATIONS                         */
+/* ====================================================== */
+
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ============================================================
+   UNIVERSAL LIGHT MODE PATCH — FIXES INCONSISTENT THEME LOGIC
+   ============================================================ */
+
+html.light .workspace-sidebar,
+body.light .workspace-sidebar,
+:root.light .workspace-sidebar,
+.light .workspace-sidebar {
+  background: linear-gradient(180deg,
+    rgba(255, 255, 255, 0.85),
+    rgba(245, 245, 255, 0.92)
+  ) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  color: #111 !important;
+}
+
+/* NAV ITEMS */
+html.light .workspace-nav li,
+body.light .workspace-nav li,
+:root.light .workspace-nav li,
+.light .workspace-nav li {
+  color: #222 !important;
+}
+
+html.light .workspace-nav li.active,
+body.light .workspace-nav li.active,
+:root.light .workspace-nav li.active,
+.light .workspace-nav li.active {
+  background: rgba(0, 120, 255, 0.18) !important;
+  border-left: 3px solid #007bff !important;
+  color: #000 !important;
+}
+
+/* PAPER CARDS */
+html.light .paper-card,
+body.light .paper-card,
+:root.light .paper-card,
+.light .paper-card {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.80),
+    rgba(245, 245, 255, 0.92)
+  ) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  color: #111 !important;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.06) !important;
+}
+
+html.light .paper-card:hover,
+body.light .paper-card:hover,
+:root.light .paper-card:hover,
+.light .paper-card:hover {
+  box-shadow: 0 14px 36px rgba(0, 120, 255, 0.18) !important;
+}
+
+/* TAGS */
+html.light .tag,
+body.light .tag,
+:root.light .tag,
+.light .tag {
+  background: rgba(0, 0, 0, 0.08) !important;
+  color: #333 !important;
+}
+
+/* GRAPH */
+html.light .paper-graph,
+body.light .paper-graph,
+:root.light .paper-graph,
+.light .paper-graph {
+  background: radial-gradient(circle, rgba(0, 120, 255, 0.25), transparent 70%) !important;
+  opacity: 0.32 !important;
+}
+
+/* MAIN TEXT */
+html.light .workspace-title,
+body.light .workspace-title,
+:root.light .workspace-title,
+.light .workspace-title,
+html.light .workspace-sub,
+body.light .workspace-sub,
+:root.light .workspace-sub,
+.light .workspace-sub {
+  color: #111 !important;
 }

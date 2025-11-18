@@ -41,7 +41,6 @@ type Tab = "all" | "favorites" | "collections" | "experiments" | "notes";
 export default function WorkspacePage() {
   const [papers, setPapers] = useState<PaperCard[]>([]);
   const [tab, setTab] = useState<Tab>("all");
-  const [selectedPaper, setSelectedPaper] = useState<PaperCard | null>(null);
 
   useEffect(() => {
     setPapers(seed);
@@ -49,7 +48,9 @@ export default function WorkspacePage() {
 
   const toggleFavorite = (id: string) => {
     setPapers(prev =>
-      prev.map(p => (p.id === id ? { ...p, favorite: !p.favorite } : p))
+      prev.map(p =>
+        p.id === id ? { ...p, favorite: !p.favorite } : p
+      )
     );
   };
 
@@ -59,7 +60,9 @@ export default function WorkspacePage() {
       case "favorites":
         return papers.filter(p => p.favorite);
       case "collections":
-        return papers.sort((a, b) => a.field.localeCompare(b.field));
+        return [...papers].sort((a, b) =>
+          a.field.localeCompare(b.field)
+        );
       default:
         return papers;
     }
@@ -70,35 +73,20 @@ export default function WorkspacePage() {
 
       {/* SIDEBAR */}
       <aside className="workspace-sidebar">
-
         <h3 className="sidebar-title">Workspace</h3>
 
         <ul className="workspace-nav">
-          <li className={tab === "all" ? "active" : ""} onClick={() => setTab("all")}>
-            📄 All Papers
-          </li>
-
-          <li className={tab === "favorites" ? "active" : ""} onClick={() => setTab("favorites")}>
-            ⭐ Favorites
-          </li>
-
-          <li className={tab === "collections" ? "active" : ""} onClick={() => setTab("collections")}>
-            📁 Collections
-          </li>
-
-          <li className={tab === "experiments" ? "active" : ""} onClick={() => setTab("experiments")}>
-            🧪 Experiments
-          </li>
-
-          <li className={tab === "notes" ? "active" : ""} onClick={() => setTab("notes")}>
-            📝 Notes
-          </li>
+          <li className={tab === "all" ? "active" : ""} onClick={() => setTab("all")}>📄 All Papers</li>
+          <li className={tab === "favorites" ? "active" : ""} onClick={() => setTab("favorites")}>⭐ Favorites</li>
+          <li className={tab === "collections" ? "active" : ""} onClick={() => setTab("collections")}>📁 Collections</li>
+          <li className={tab === "experiments" ? "active" : ""} onClick={() => setTab("experiments")}>🧪 Experiments</li>
+          <li className={tab === "notes" ? "active" : ""} onClick={() => setTab("notes")}>📝 Notes</li>
         </ul>
 
         <button className="add-button">+ Add Paper</button>
       </aside>
 
-      {/* MAIN SECTION */}
+      {/* MAIN AREA */}
       <main className="workspace-main">
         <h2 className="workspace-title">
           {tab === "all" && "My Papers"}
@@ -116,26 +104,26 @@ export default function WorkspacePage() {
           {tab === "notes" && "Your saved ideas and annotations"}
         </p>
 
-        {/* EMPTY STATES */}
+        {/* EMPTY STATE */}
         {filteredPapers.length === 0 && (
           <div className="empty">
             {tab === "favorites" && "No favorites yet ⭐"}
             {tab === "collections" && "Nothing to group yet 📁"}
-            {tab === "experiments" && "No experiments available yet 🧪"}
-            {tab === "notes" && "No notes created yet 📝"}
+            {tab === "experiments" && "No experiments yet 🧪"}
+            {tab === "notes" && "No notes yet 📝"}
           </div>
         )}
 
         {/* PAPER GRID */}
         <div className="paper-grid">
-          {filteredPapers.map(p => (
-            <div key={p.id} className="paper-card" onClick={() => setSelectedPaper(p)}>
+          {filteredPapers.map((p) => (
+            <div key={p.id} className="paper-card">
               <div className="paper-header">
                 <h4>{p.title}</h4>
 
                 <button
                   className={`fav-btn ${p.favorite ? "active" : ""}`}
-                  onClick={e => {
+                  onClick={(e) => {
                     e.stopPropagation();
                     toggleFavorite(p.id);
                   }}
@@ -147,7 +135,9 @@ export default function WorkspacePage() {
               <div className="paper-meta">{p.field} · {p.year}</div>
 
               <div className="paper-tags">
-                {p.tags.map(t => <span key={t} className="tag">{t}</span>)}
+                {p.tags.map(t => (
+                  <span key={t} className="tag">{t}</span>
+                ))}
               </div>
 
               <div className="paper-graph"></div>
