@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import "./workspace.css";
 
 type PaperCard = {
   id: string;
@@ -26,90 +27,135 @@ const seed: PaperCard[] = [
     year: "2021",
     tags: ["graphs", "collisions"],
   },
+  {
+    id: "p3",
+    title: "Transformer-based Calorimeter Reconstruction",
+    field: "AI / Physics",
+    year: "2023",
+    tags: ["transformers", "reconstruction"],
+  },
 ];
+
+type Tab = "all" | "favorites" | "collections" | "experiments" | "notes";
 
 export default function WorkspacePage() {
   const [papers, setPapers] = useState<PaperCard[]>([]);
+  const [tab, setTab] = useState<Tab>("all");
+  const [selectedPaper, setSelectedPaper] = useState<PaperCard | null>(null);
 
   useEffect(() => {
     setPapers(seed);
   }, []);
 
   const toggleFavorite = (id: string) => {
-    setPapers((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, favorite: !p.favorite } : p))
+    setPapers(prev =>
+      prev.map(p => (p.id === id ? { ...p, favorite: !p.favorite } : p))
     );
   };
 
+  // FILTER LOGIC
+  const filteredPapers = (() => {
+    switch (tab) {
+      case "favorites":
+        return papers.filter(p => p.favorite);
+      case "collections":
+        return papers.sort((a, b) => a.field.localeCompare(b.field));
+      default:
+        return papers;
+    }
+  })();
+
   return (
-    <div className="w3-padding-large w3-animate-opacity">
-      <h2
-        style={{
-          fontSize: "1.6rem",
-          fontWeight: 600,
-          marginBottom: "4px",
-        }}
-      >
-        ARPIS Workspace
-      </h2>
+    <div className="workspace-container">
 
-      <p style={{ opacity: 0.7, marginBottom: "24px" }}>
-        Organize your research universe — collections, favorites and notes
-        (mocked for now).
-      </p>
+      {/* SIDEBAR */}
+      <aside className="workspace-sidebar">
 
-      <div className="w3-row-padding">
-        {papers.map((p) => (
-          <div key={p.id} className="w3-third w3-margin-bottom">
-            <div
-              className="arpis-card"
-              style={{
-                padding: "18px",
-                background: "rgba(255,255,255,0.05)",
-                borderRadius: "14px",
-                border: "1px solid rgba(255,255,255,0.08)",
-              }}
-            >
-              <div
-                style={{
-                  fontWeight: 600,
-                  marginBottom: "6px",
-                }}
-              >
-                {p.title}
-              </div>
+        <h3 className="sidebar-title">Workspace</h3>
 
-              <div style={{ opacity: 0.7, fontSize: "0.8rem" }}>
-                {p.field} · {p.year}
-              </div>
+        <ul className="workspace-nav">
+          <li className={tab === "all" ? "active" : ""} onClick={() => setTab("all")}>
+            📄 All Papers
+          </li>
 
-              <div
-                style={{
-                  marginTop: "10px",
-                  marginBottom: "10px",
-                }}
-              >
-                {p.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="w3-tag w3-round-large w3-small w3-margin-right"
-                    style={{ background: "rgba(255,255,255,0.1)" }}
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
+          <li className={tab === "favorites" ? "active" : ""} onClick={() => setTab("favorites")}>
+            ⭐ Favorites
+          </li>
 
-              <button
-                className="w3-button w3-round-large w3-small"
-                onClick={() => toggleFavorite(p.id)}
-              >
-                {p.favorite ? "★ Favorited" : "☆ Favorite"}
-              </button>
-            </div>
+          <li className={tab === "collections" ? "active" : ""} onClick={() => setTab("collections")}>
+            📁 Collections
+          </li>
+
+          <li className={tab === "experiments" ? "active" : ""} onClick={() => setTab("experiments")}>
+            🧪 Experiments
+          </li>
+
+          <li className={tab === "notes" ? "active" : ""} onClick={() => setTab("notes")}>
+            📝 Notes
+          </li>
+        </ul>
+
+        <button className="add-button">+ Add Paper</button>
+      </aside>
+
+      {/* MAIN SECTION */}
+      <main className="workspace-main">
+        <h2 className="workspace-title">
+          {tab === "all" && "My Papers"}
+          {tab === "favorites" && "Favorites"}
+          {tab === "collections" && "Collections"}
+          {tab === "experiments" && "Experiments"}
+          {tab === "notes" && "Notes"}
+        </h2>
+
+        <p className="workspace-sub">
+          {tab === "all" && "Your personal research universe"}
+          {tab === "favorites" && "Your starred papers"}
+          {tab === "collections" && "Grouped by field"}
+          {tab === "experiments" && "Prototype: Coming soon"}
+          {tab === "notes" && "Your saved ideas and annotations"}
+        </p>
+
+        {/* EMPTY STATES */}
+        {filteredPapers.length === 0 && (
+          <div className="empty">
+            {tab === "favorites" && "No favorites yet ⭐"}
+            {tab === "collections" && "Nothing to group yet 📁"}
+            {tab === "experiments" && "No experiments available yet 🧪"}
+            {tab === "notes" && "No notes created yet 📝"}
           </div>
-        ))}
-      </div>
+        )}
+
+        {/* PAPER GRID */}
+        <div className="paper-grid">
+          {filteredPapers.map(p => (
+            <div key={p.id} className="paper-card" onClick={() => setSelectedPaper(p)}>
+              <div className="paper-header">
+                <h4>{p.title}</h4>
+
+                <button
+                  className={`fav-btn ${p.favorite ? "active" : ""}`}
+                  onClick={e => {
+                    e.stopPropagation();
+                    toggleFavorite(p.id);
+                  }}
+                >
+                  ★
+                </button>
+              </div>
+
+              <div className="paper-meta">{p.field} · {p.year}</div>
+
+              <div className="paper-tags">
+                {p.tags.map(t => <span key={t} className="tag">{t}</span>)}
+              </div>
+
+              <div className="paper-graph"></div>
+            </div>
+          ))}
+        </div>
+      </main>
+
     </div>
   );
 }
